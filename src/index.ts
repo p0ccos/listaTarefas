@@ -23,8 +23,9 @@ function listarTarefas() {
     let hoje = new Date().toISOString().split("T")[0];
     let atrasada = item.data < hoje;
 
-
-    let dataFormatada = new Date(item.data).toLocaleDateString("pt-BR");
+    let partes = item.data.split("-");
+    let dataObj = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
+    let dataFormatada = dataObj.toLocaleDateString("pt-BR");
     let tarefaText = document.createTextNode(`${item.titulo} - ${dataFormatada}`);
 
     if (atrasada) {

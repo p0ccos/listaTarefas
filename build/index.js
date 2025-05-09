@@ -14,7 +14,9 @@ function listarTarefas() {
         var todoElement = document.createElement("li");
         var hoje = new Date().toISOString().split("T")[0];
         var atrasada = item.data < hoje;
-        var dataFormatada = new Date(item.data).toLocaleDateString("pt-BR");
+        var partes = item.data.split("-");
+        var dataObj = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
+        var dataFormatada = dataObj.toLocaleDateString("pt-BR");
         var tarefaText = document.createTextNode("".concat(item.titulo, " - ").concat(dataFormatada));
         if (atrasada) {
             todoElement.style.color = "red";
